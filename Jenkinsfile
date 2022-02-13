@@ -1,11 +1,29 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        stage('Test') {
+        stage('Build Image') {
             steps {
                 sh 'mvn --version'
                 sh 'java --version'
             }
         }
+        stage('Compile') {
+            steps {
+                sh 'mvn clean compile'
+               
+            }
+        
+         stage('Test Compile') {
+            steps {
+                sh 'mvn clean test-complie'
+               
+            }
+         stage('Test') {
+            steps {
+                sh 'mvn clean test'
+               
+            }    
+        }
+       
     }
 }
